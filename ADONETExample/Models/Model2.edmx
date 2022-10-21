@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище MyMusicDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADONETSAMPLE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="Region" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="AlbumID" />
+          </Key>
+          <Property Name="AlbumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="ArtistID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="ArtistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" />
+          <Property Name="Country" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="80" />
+          <Property Name="Address" Type="nvarchar" MaxLength="70" />
+          <Property Name="City" Type="nvarchar" MaxLength="40" />
+          <Property Name="State" Type="nvarchar" MaxLength="40" />
+          <Property Name="Country" Type="nvarchar" MaxLength="40" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="24" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="24" />
+          <Property Name="Email" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="SupportRepId" Type="int" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="GenreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="TrackId" />
+          </Key>
+          <Property Name="TrackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AlbumId" Type="int" />
+          <Property Name="MediaTypeId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" />
+          <Property Name="Composer" Type="nvarchar" MaxLength="220" />
+          <Property Name="Milliseconds" Type="int" Nullable="false" />
+          <Property Name="Bytes" Type="int" />
+          <Property Name="UnitPrice" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Track__AlbumId__5CD6CB2B">
+          <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="AlbumID" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtistId">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="ArtistID" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Genre1" Type="Self.Genre" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreId" />
+            </Principal>
+            <Dependent Role="Genre1">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreId" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище MyMusicDBModelContainer">
+          <EntitySet Name="ADONETSAMPLE" EntityType="Self.ADONETSAMPLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Track__AlbumId__5CD6CB2B" Association="Self.FK__Track__AlbumId__5CD6CB2B">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Track" EntitySet="Track" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtistId" Association="Self.FK_ArtistId">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenreId" Association="Self.FK_GenreId">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Genre1" EntitySet="Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track" Association="Self.FK_Track">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Track" EntitySet="Track" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyMusicDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="AlbumID" />
+          </Key>
+          <Property Name="AlbumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="160" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArtistID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tracks" Relationship="Self.FK__Track__AlbumId__5CD6CB2B" FromRole="Album" ToRole="Track" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK_ArtistId" FromRole="Album" ToRole="Artist" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="ArtistID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_ArtistId" FromRole="Artist" ToRole="Album" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SupportRepId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Genre1" Relationship="Self.FK_GenreId" FromRole="Genre" ToRole="Genre1" />
+          <NavigationProperty Name="Genre2" Relationship="Self.FK_GenreId" FromRole="Genre1" ToRole="Genre" />
+          <NavigationProperty Name="Tracks" Relationship="Self.FK_Track" FromRole="Genre" ToRole="Track" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="TrackId" />
+          </Key>
+          <Property Name="TrackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AlbumId" Type="Int32" />
+          <Property Name="MediaTypeId" Type="Int32" Nullable="false" />
+          <Property Name="GenreId" Type="Int32" />
+          <Property Name="Composer" Type="String" MaxLength="220" FixedLength="false" Unicode="true" />
+          <Property Name="Milliseconds" Type="Int32" Nullable="false" />
+          <Property Name="Bytes" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="Self.FK__Track__AlbumId__5CD6CB2B" FromRole="Track" ToRole="Album" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_Track" FromRole="Track" ToRole="Genre" />
+        </EntityType>
+        <Association Name="FK__Track__AlbumId__5CD6CB2B">
+          <End Role="Album" Type="Self.Album" Multiplicity="0..1" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="AlbumID" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtistId">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="ArtistID" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Genre1" Type="Self.Genre" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreId" />
+            </Principal>
+            <Dependent Role="Genre1">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Track">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreId" />
+            </Principal>
+            <Dependent Role="Track">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyMusicDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Albums" EntityType="Self.Album" />
+          <EntitySet Name="Artists" EntityType="Self.Artist" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Tracks" EntityType="Self.Track" />
+          <AssociationSet Name="FK__Track__AlbumId__5CD6CB2B" Association="Self.FK__Track__AlbumId__5CD6CB2B">
+            <End Role="Album" EntitySet="Albums" />
+            <End Role="Track" EntitySet="Tracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtistId" Association="Self.FK_ArtistId">
+            <End Role="Artist" EntitySet="Artists" />
+            <End Role="Album" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenreId" Association="Self.FK_GenreId">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Genre1" EntitySet="Genres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Track" Association="Self.FK_Track">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Track" EntitySet="Tracks" />
+          </AssociationSet>
+          <EntitySet Name="ADONETSAMPLEs" EntityType="MyMusicDBModel.ADONETSAMPLE" />
+        </EntityContainer>
+        <EntityType Name="ADONETSAMPLE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MyMusicDBModelContainer" CdmEntityContainer="MyMusicDBEntities">
+          <EntitySetMapping Name="Albums">
+            <EntityTypeMapping TypeName="MyMusicDBModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="MyMusicDBModel.Artist">
+              <MappingFragment StoreEntitySet="Artist">
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="MyMusicDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SupportRepId" ColumnName="SupportRepId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="MyMusicDBModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tracks">
+            <EntityTypeMapping TypeName="MyMusicDBModel.Track">
+              <MappingFragment StoreEntitySet="Track">
+                <ScalarProperty Name="TrackId" ColumnName="TrackId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="MediaTypeId" ColumnName="MediaTypeId" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+                <ScalarProperty Name="Composer" ColumnName="Composer" />
+                <ScalarProperty Name="Milliseconds" ColumnName="Milliseconds" />
+                <ScalarProperty Name="Bytes" ColumnName="Bytes" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADONETSAMPLEs">
+            <EntityTypeMapping TypeName="MyMusicDBModel.ADONETSAMPLE">
+              <MappingFragment StoreEntitySet="ADONETSAMPLE">
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

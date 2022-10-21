@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7dcf8d6847fd4f168bb4da2646f68608" Name="Diagram1">
+        <EntityTypeShape EntityType="MyMusicDBModel.Album" Width="1.5" PointX="0.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyMusicDBModel.Artist" Width="1.5" PointX="3.375" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyMusicDBModel.Customer" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyMusicDBModel.Genre" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyMusicDBModel.Track" Width="1.5" PointX="3.625" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="MyMusicDBModel.FK__Track__AlbumId__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="MyMusicDBModel.FK_ArtistId" ManuallyRouted="false" />
+        <AssociationConnector Association="MyMusicDBModel.FK_GenreId" ManuallyRouted="false" />
+        <AssociationConnector Association="MyMusicDBModel.FK_Track" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyMusicDBModel.ADONETSAMPLE" Width="1.5" PointX="6" PointY="5.25" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
