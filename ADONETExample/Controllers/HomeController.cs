@@ -29,14 +29,31 @@ namespace ADONETExample.Controllers
         {
             return View();
         }
+       
+        public ActionResult SeacrhCustomer()
+        {
+            return View();
+        }
+
+        public ActionResult SeacrhItem()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult Results(string fName)
+        {
+            var searching = db.Customers.Where(x => x.FirstName.Contains(fName)).ToList();
+
+            return PartialView(searching);
+        }
+    
 
         [HttpGet]
         public async Task<ActionResult> GetTable()
         {
             return View(await db.Customers.ToListAsync());
         }
-
-
 
         public ActionResult Sample()
         {

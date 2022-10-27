@@ -1,0 +1,25 @@
+﻿
+<div style="padding-top:100px">
+    @using (Ajax.BeginForm("Results", new AjaxOptions { UpdateTargetId = "showResults", LoadingElementId = "loading", LoadingElementDuration = 2000, Confirm = "Выполнить запрос ?" }))
+    {
+        <input type="text" name="fName" />
+        <input type="submit" value="Поиск" />
+    }
+
+    <div id="loading" style="display:none">
+        <h3>Идет загрузка, Пожалуйста подождите ! </h3>
+    </div>
+
+    <div id="showResults" >
+       
+    </div>
+
+    
+
+
+    @* @Html.Partial("Results")*@
+
+</div>
+
+@*@Scripts.Render("~Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~Scripts/jquery-3.4.1.js")*@

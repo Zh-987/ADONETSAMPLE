@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ADONETExample.Models.Customer>
+
+<div id="showResults">
+    <h4> Список Заказчиков </h4>
+
+    @foreach (var Customers in Model)
+    {
+        <ul>
+            <li>@Customers.CustomerId</li>
+            <li>@Customers.FirstName</li>
+            <li>@Customers.LastName</li>
+            <li>@Customers.Company</li>
+            <li>@Customers.Address</li>
+            <li>@Customers.City</li>
+            <li>@Customers.State</li>
+            <li>@Customers.Country</li>
+            <li>@Customers.PostalCode</li>
+            <li>@Customers.Phone</li>
+            <li>@Customers.Fax</li>
+            <li>@Customers.Email</li>
+        </ul>
+    }
+
+</div>
