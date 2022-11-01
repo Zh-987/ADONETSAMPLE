@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ADONETExample.Models.Customer>
+
+<h4>JetBrains s.r.o.</h4>
+
+@*@Html.DisplayForModel()*@
+
+<hr>
+@foreach (var Customers in Model)
+{
+    <div>
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <td>@*@Model.CustomerId*@   @Customers.CustomerId</td>
+            </tr>
+            <tr>
+                <th>Имя</th>
+                <td>@*@Model.FirstName *@ @Customers.FirstName</td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td>@*Model.LastName*@ @Customers.LastName</td>
+            </tr>
+            <tr>
+                <th>Компания</th>
+                <td>@*@Model.Company*@ @Customers.Company< /td>
+</tr>
+            <tr>
+                <th>Адрес</th>
+                <td>@*@Model.Address*@ @Customers.Address</td>
+            </tr>
+            <tr>
+                <th>Город</th>
+                <td>@*@Model.City*@ @Customers.City</td>
+            </tr>
+            <tr>
+                <th>Регион</th>
+                <td>@*@Model.State*@ @Customers.State</td>
+            </tr>
+            <tr>
+                <th>Страна</th>
+                <td>@*@Model.Country*@ @Customers.Country</td>
+            </tr>
+            <tr>
+                <th>Почтовый индекс</th>
+                <td>@*@Model.PostalCode*@ @Customers.PostalCode</td>
+            </tr>
+            <tr>
+                <th>Телефон</th>
+
+                <td>@*@Model.Phone*@ @Customers.Phone</td>
+            </tr>
+            <tr>
+                <th>Факс</th>
+                <td>@*@Model.Fax*@ @Customers.Fax</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@*@Model.Email*@ @Customers.Email</td>
+            </tr>
+
+        </table>
+    </div>
+}

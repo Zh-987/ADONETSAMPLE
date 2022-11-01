@@ -228,6 +228,7 @@
     <Content Include="Views\Home\SeacrhCustomer.cshtml" />
     <Content Include="Views\Home\Results.cshtml" />
     <Content Include="Views\Home\SeacrhItem.cshtml" />
+    <Content Include="Views\Home\LinkResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

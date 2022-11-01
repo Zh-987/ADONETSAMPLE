@@ -1,6 +1,6 @@
 ﻿
 <div style="padding-top:100px">
-    @using (Ajax.BeginForm("Results", new AjaxOptions { UpdateTargetId = "showResults", LoadingElementId = "loading", LoadingElementDuration = 2000, Confirm = "Выполнить запрос ?" }))
+    @using (Ajax.BeginForm("SendAsJson", new AjaxOptions { UpdateTargetId = "showResults", LoadingElementId = "loading", LoadingElementDuration = 2000, Confirm = "Выполнить запрос ?", OnBegin = "OnBegin", OnComplete = "OnComplete", OnFailure = "OnFailure", OnSuccess = "OnSuccess" }))
     {
         <input type="text" name="fName" />
         <input type="submit" value="Поиск" />
@@ -13,13 +13,33 @@
     <div id="showResults" >
        
     </div>
-
+    @foreach (string x in ViewBag.Countries) { 
+<div id="LinkResult">
+    @Ajax.ActionLink(x, "Results", new {name = x}, new AjaxOptions { UpdateTargetId = "LinkResult" })
+</div>
+    }
     
-
-
-    @* @Html.Partial("Results")*@
 
 </div>
 
-@*@Scripts.Render("~Scripts/jquery.unobtrusive-ajax.js")
-@Scripts.Render("~Scripts/jquery-3.4.1.js")*@
+<script type="text/javascript">
+
+    function OnBegin() {
+        alert("Ваш запрос принят, выполняется поиск");
+    }
+    function OnComplete(request, status) {
+        alert("Ваш запрос в обработке, под статусом :" + status );
+    }
+    function OnSuccess(data) {
+
+        var results = $('#showResults');
+        results.empty();
+        for (var i = 0; i < data.length; i++) {
+            results.append('<li>' + data[i].FirstName + '</li>');
+        }
+        alert("Ваш запрос успешно завершен, получены следующие данные:" + data);
+    }
+    function OnFailure(request, error) {
+        $("#showResults").html("Данный человек нет в нашем реестре. И нет данных схожие с этим человеком." + error)
+    }
+    </script>

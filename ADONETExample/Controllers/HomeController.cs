@@ -32,11 +32,13 @@ namespace ADONETExample.Controllers
        
         public ActionResult SeacrhCustomer()
         {
+            ViewBag.Countries = db.Customers.Select(x => x.Country).Distinct();
             return View();
         }
 
         public ActionResult SeacrhItem()
         {
+            ViewBag.Countries = db.Customers.Select(x => x.Country).Distinct();
             return PartialView();
         }
 
@@ -47,7 +49,23 @@ namespace ADONETExample.Controllers
 
             return PartialView(searching);
         }
-    
+
+        public ActionResult LinkResults()
+        {
+            /*var searching = db.Customers.Where(x => x.Company == ).First();*/
+
+            ViewBag.Countries = db.Customers.Select(x => x.Country).Distinct();
+
+            return PartialView();
+        }
+
+        public JsonResult SendAsJson(string name)
+        {
+            var searching = db.Customers.Where(x => x.FirstName.Contains(name)).ToList();
+
+            return Json(searching,JsonRequestBehavior.AllowGet); 
+        }
+
 
         [HttpGet]
         public async Task<ActionResult> GetTable()
