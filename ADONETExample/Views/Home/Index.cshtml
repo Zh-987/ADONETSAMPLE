@@ -10,8 +10,14 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
+<div>
+    <input type="text" id="text" />
+    <input type="button" id="submit" value="Поиск" />
+    <div id="result">
+    </div>
 
 
+</div>
 
 <div class="row">
     <div class="col-md-4">
@@ -35,5 +41,21 @@
     </div>
 </div>
 
-@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
-@Scripts.Render("~/Scripts/jquery-3.4.1.js")
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#submit').click(function (e){
+            e.preventDefault();
+            var text = $('#text').val();
+            text = encodeURIComponent(text);
+            $('#result').load('@Url.Action("SeacrhItem", "Home")?text=' + text)
+        });
+    });
+    </script>
+
+}
+
+

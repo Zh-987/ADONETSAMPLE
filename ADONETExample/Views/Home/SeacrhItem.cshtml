@@ -1,6 +1,9 @@
 ﻿
 <div style="padding-top:100px">
-    @using (Ajax.BeginForm("SendAsJson", new AjaxOptions { UpdateTargetId = "showResults", LoadingElementId = "loading", LoadingElementDuration = 2000, Confirm = "Выполнить запрос ?", OnBegin = "OnBegin", OnComplete = "OnComplete", OnFailure = "OnFailure", OnSuccess = "OnSuccess" }))
+    @*  @using (Ajax.BeginForm("SendAsJson", new AjaxOptions { UpdateTargetId = "showResults", LoadingElementId = "loading", LoadingElementDuration = 2000, Confirm = "Выполнить запрос ?", OnBegin = "OnBegin", OnComplete = "OnComplete", OnFailure = "OnFailure", OnSuccess = "OnSuccess" }))
+    *@
+    @using (Ajax.BeginForm("SendAsJson", new AjaxOptions { UpdateTargetId = "showResults", LoadingElementId = "loading", LoadingElementDuration = 2000, Confirm = "Выполнить запрос ?", OnSuccess = "OnSuccess" }))
+
     {
         <input type="text" name="fName" />
         <input type="submit" value="Поиск" />
@@ -10,36 +13,46 @@
         <h3>Идет загрузка, Пожалуйста подождите ! </h3>
     </div>
 
-    <div id="showResults" >
-       
+    <div id="showResults">
+
     </div>
-    @foreach (string x in ViewBag.Countries) { 
-<div id="LinkResult">
-    @Ajax.ActionLink(x, "Results", new {name = x}, new AjaxOptions { UpdateTargetId = "LinkResult" })
+    @foreach (string x in ViewBag.Countries)
+    {
+        <div id="LinkResult">
+            @Ajax.ActionLink(x, "Results", new { name = x }, new AjaxOptions { UpdateTargetId = "LinkResult" })
+        </div>
+    }
+
+
 </div>
-    }
-    
 
-</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function OnBegin() {
-        alert("Ваш запрос принят, выполняется поиск");
-    }
-    function OnComplete(request, status) {
-        alert("Ваш запрос в обработке, под статусом :" + status );
-    }
-    function OnSuccess(data) {
-
-        var results = $('#showResults');
-        results.empty();
-        for (var i = 0; i < data.length; i++) {
-            results.append('<li>' + data[i].FirstName + '</li>');
+        function OnBegin() {
+            alert("Ваш запрос принят, выполняется поиск");
         }
-        alert("Ваш запрос успешно завершен, получены следующие данные:" + data);
-    }
-    function OnFailure(request, error) {
-        $("#showResults").html("Данный человек нет в нашем реестре. И нет данных схожие с этим человеком." + error)
-    }
+        function OnComplete(request, status) {
+            alert("Ваш запрос в обработке, под статусом :" + status);
+        }
+        function OnSuccess(data) {
+
+            var results = $('#showResults');
+            results.empty();
+            for (var i = 0; i < data.length; i++) {
+                results.append('<li>' + data[i].FirstName + '</li>');
+            }
+            alert("Ваш запрос успешно завершен, получены следующие данные:" + data);
+        }
+        function OnFailure(request, error) {
+            $("#showResults").html("Данный человек нет в нашем реестре. И нет данных схожие с этим человеком." + error)
+        }
+
     </script>
+}
+
+

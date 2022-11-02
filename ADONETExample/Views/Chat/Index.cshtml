@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Чат IT Step</h2>
+
+<div id="UserName"></div>
+<div id="Last"> </div>
+<div class="container" id="container">
+    <div id="LoginArea">
+        <input type="text" id="inputUserName" />
+        @*<input type="button">*@
+        <button id="LogIn" value="Войти">Войти</button>
+    </div>
+</div>
+
+<div id="Error">
+</div>
+
+@Ajax.ActionLink("Login", "Index", new { user = "" },
+new AjaxOptions { UpdateTargetId = "container", OnFailure = "OnFailure", OnSuccess = "OnSuccess" },
+new { @id = "BtnLogin", @style = "visibility:hidden" });
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+
+
+@* AJAX 6th version ***cdm link for layout => <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+
+    <a data-ajax="true" data-ajax-loading="#loading" data-ajax-mode="replace" data-ajax-update="#partial-view-render" href='@Url.Action("CurrencyCalc", "Home")' class="btn btn-outline-primary">
+        Convert currency
+    </a>
+*@

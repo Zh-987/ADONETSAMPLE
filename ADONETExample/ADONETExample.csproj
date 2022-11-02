@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,6 +142,7 @@
     <Compile Include="Models\Artist.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
@@ -229,6 +231,9 @@
     <Content Include="Views\Home\Results.cshtml" />
     <Content Include="Views\Home\SeacrhItem.cshtml" />
     <Content Include="Views\Home\LinkResults.cshtml" />
+    <Content Include="Views\Chat\ChatRoom.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Chat\MessageHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
