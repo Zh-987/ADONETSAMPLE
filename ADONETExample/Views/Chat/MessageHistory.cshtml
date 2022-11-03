@@ -1,1 +1,30 @@
-﻿
+﻿@using ADONETExample.Models
+
+@model Chat
+
+<div id="OnlineUsers">
+    <p>В чате онлайн:<p> @Model.User.Count
+    @foreach(Chat.ChatUsers user in Model.User)
+    {
+    <p>@user.Name</p>
+    }
+    </div>
+
+<div id="Messages">
+    @foreach(Chat.ChatMessage message in Model.Messages)
+            {
+    <p>
+        @message.Date
+        <br />
+        @if (message.users.Name != null)
+        {
+            <b>@message.users.Name : </b> @message.Text
+        }
+                else
+                {
+    <p>@message.Text</p>
+                }
+
+    </p>
+            }
+    </div>

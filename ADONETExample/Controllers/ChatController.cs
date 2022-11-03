@@ -19,6 +19,7 @@ namespace ADONETExample.Controllers
                 {
                     chatmodel = new Chat();
                 }
+
                 if (!Request.IsAjaxRequest())
                 {
                     return View();

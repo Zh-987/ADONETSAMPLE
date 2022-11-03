@@ -1,1 +1,18 @@
-﻿
+﻿@using ADONETExample.Models
+
+@model Chat
+    
+<div id="Refresh">
+@{ 
+    Html.RenderPartial("MessageHistory", Model);
+}  
+</div>
+
+@Ajax.ActionLink("Link","Index", new {user = "", LogOn = "", LogOff = "", chatMessages = ""},new AjaxOptions {UpdateTargetId = "Refresh", OnSuccess = "OnSuccessChat", OnFailure = "OnFailureChat" },
+    new {@id = "Link" , @style = "visibility:hidden;"})
+
+<div id="InputForm">
+    <textarea id="SendMessages"> </textarea>
+    <button id="btnMessages" value="Отправить">Отправить</button>
+    <button id="btnOff" value="Выйти">Выйти</button>
+</div>
