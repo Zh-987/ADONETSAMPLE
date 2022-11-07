@@ -23,6 +23,7 @@ function OnSuccess(result) {
             $('#btnMessages').click();
         }
     });
+
     $('#btnMessages').click(function (e) {
         var text = $('#SendMessages').text().val();
         if (text) {

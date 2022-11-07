@@ -27,6 +27,7 @@ namespace ADONETExample.Controllers
 
         public ActionResult Index()
         {
+            Session["company"] = "ERG";
             return View();
         }
        
@@ -91,5 +92,23 @@ namespace ADONETExample.Controllers
 
             return View();
         }
+
+        public string Context()
+        {
+            HttpContext.Response.Write("<h1>HELLO IT STEP</h1>"); // Response
+            string browser = HttpContext.Request.Browser.Browser; //Request
+            string ip = HttpContext.Request.UserHostAddress;
+
+            HttpContext.Request.Cookies["Name"].Value = "Miras";
+
+            string cookies = HttpContext.Request.Cookies["Name"].Value;
+
+
+           
+
+            return "<p> Browser: " + browser + "<br> IP:" + ip+ "Cookie:"+ cookies + "</p>";
+        }
+
+
     }
 }
