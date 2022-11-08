@@ -1,3 +1,7 @@
+using ADONETExample.Utils;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +20,10 @@ namespace ADONETExample
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoFacConfig.ConfigureContainer();
+            NinjectModule regulations = new NinjectRegulations();
+            var kernel = new StandardKernel(regulations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
         protected void Session_Start()
         {

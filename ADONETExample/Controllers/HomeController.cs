@@ -1,4 +1,5 @@
 ﻿using ADONETExample.Models;
+using ADONETExample.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,72 +7,91 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Ninject;
 
 namespace ADONETExample.Controllers
 {
     public class HomeController : Controller
     {
-        /*   private MyMusicDBEntities _dbContext;*/
 
-        MyMusicDBEntities db = new MyMusicDBEntities();
+        /*
+        * 
+        * Tight coupling (Жесткая связь) к Репозиторию
+        * 
+        * ChatRepository repo;
 
-        /* public HomeController(MyMusicDBEntities musicdb)
-         {
-             _dbContext = musicdb;
-         }
+       public ChatController()
+       {
+           repo = new ChatRepository();
+       }
+        
+         */
 
-         public HomeController()
-         {
+        /* 
+         Soft coupling (Мягкая/слабая связь) к репозиторию
+         */
+          
+         private IHomeRepository repo;
 
-         }*/
+         public HomeController(IHomeRepository r) //
+        {
+            /* IKernel kernel = new StandardKernel();
+             kernel.Bind<IHomeRepository>().To<HomeRepository>();
+             repo = kernel.Get<IHomeRepository>();*/
+            repo = r;
+        }
+        public HomeController() : this(new HomeRepository())
+        {
+
+        }
 
         public ActionResult Index()
-        {
-            Session["company"] = "ERG";
-            return View();
-        }
-       
-        public ActionResult SeacrhCustomer()
-        {
-            ViewBag.Countries = db.Customers.Select(x => x.Country).Distinct();
-            return View();
-        }
+         {
+             return View();
+         }
 
-        public ActionResult SeacrhItem()
-        {
-            ViewBag.Countries = db.Customers.Select(x => x.Country).Distinct();
-            return PartialView();
-        }
+         public ActionResult SeacrhCustomer()
+         {
+             repo.SearchCustomer();
+             return View();
+         }
 
-        [HttpPost]
-        public ActionResult Results(string fName)
-        {
-            var searching = db.Customers.Where(x => x.FirstName.Contains(fName)).ToList();
+         public ActionResult SeacrhItem()
+         {
+             repo.SeacrhItem();
+             return PartialView();
+         }
 
-            return PartialView(searching);
-        }
+         [HttpPost]
+         public ActionResult Results(string fName)
+         {
+            /*db.Customers.Where(x => x.FirstName.Contains(fName)).ToList();*/
+            var searching = repo.Results(fName);
 
-        public ActionResult LinkResults()
-        {
+             return PartialView(searching);
+         }
+
+         public ActionResult LinkResults()
+         {
             /*var searching = db.Customers.Where(x => x.Company == ).First();*/
 
-            ViewBag.Countries = db.Customers.Select(x => x.Country).Distinct();
+            ViewBag.Countries = repo.LinkResults();
 
             return PartialView();
         }
 
         public JsonResult SendAsJson(string name)
         {
-            var searching = db.Customers.Where(x => x.FirstName.Contains(name)).ToList();
+            var searching = repo.SendAsJson(name);
 
             return Json(searching,JsonRequestBehavior.AllowGet); 
         }
 
 
         [HttpGet]
-        public async Task<ActionResult> GetTable()
+        public ActionResult GetTable()
         {
-            return View(await db.Customers.ToListAsync());
+            return View(repo.GetTable());
         }
 
         public ActionResult Sample()
