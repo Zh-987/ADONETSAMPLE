@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Castle.Windsor;
 
 namespace ADONETExample
 {
@@ -16,14 +17,22 @@ namespace ADONETExample
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoFacConfig.ConfigureContainer();
             NinjectModule regulations = new NinjectRegulations();
             var kernel = new StandardKernel(regulations);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
+            var container = new WindsorContainer();
+            container.Install(new CastleInstaller());
+
+            var castleControllerFactory = new CastleControllerFactory(container);
+
+            ControllerBuilder.Current.SetControllerFactory(castleControllerFactory);
+
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
         protected void Session_Start()
         {

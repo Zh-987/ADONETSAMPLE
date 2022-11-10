@@ -22,7 +22,6 @@ namespace ADONETExample.Utils
             builder.RegisterType<HomeRepository>().As<IHomeRepository>().WithProperty("dbcontext", new MyMusicDBEntities());
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
         }
     }
 }
