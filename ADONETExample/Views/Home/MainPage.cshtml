@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ADONETExample.Models.Customer>
+@using ADONETExample.Helpers
 
 @{
     ViewBag.Title = "Home Page";
@@ -10,6 +11,11 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
+
+
+@Html.Image("/Content/img/3253529.jpeg", "ItStep")
+@Html.Image("/Content/img/unnamed.jpg", "ItStep")
+
 <h1>@Session["Name"]</h1>
 
 <div>
@@ -17,9 +23,42 @@
     <input type="button" id="submit" value="Поиск" />
     <div id="result">
     </div>
-
-
 </div>
+
+
+@helper ListofCustomers(string[] allCustomers)
+{
+    <ul>
+        @foreach (string customer in allCustomers)
+        {
+            <li>
+                @customer
+            </li>
+        }
+    </ul>
+}
+
+@{
+    string[] names = new string[] { "Luís","Leonie",
+"François",
+"Bjørn",
+"František",
+"Helena",
+"Astrid",
+"Daan",
+"Kara",
+"Eduardo",
+"Alexandre"};
+}
+
+
+<h3> Html helper List of Customers</h3>
+
+@ListofCustomers(names)
+
+<h3> Html helper using C# List of Customers</h3>
+
+@ListHelper.List(Html, names)
 
 <div class="row">
     <div class="col-md-4">
@@ -43,6 +82,11 @@
     </div>
 </div>
 
+
+
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -57,7 +101,4 @@
         });
     });
     </script>
-
 }
-
-

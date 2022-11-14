@@ -1,7 +1,27 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+<p>Дата: @DateTime.Now </p>
+
+<p>@(5 + 5)</p>
+
+<p>@@</p>
+
+@{
+    int a = 4;
+    int b = 5;
+    int S = a * b;
+}
+
+<p>@S</p>
+
+@{
+    string hello = "Hello It Step";
+    @: <p>Привет Всем</p>
+}
+@hello

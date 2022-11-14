@@ -49,8 +49,8 @@ namespace ADONETExample.Controllers
          {
 
          }*/
-
-      
+        [ActionFilter]
+        [ExceptionFilter]
         [ActionName("MainPage")]
         public ActionResult Index()
         {
@@ -64,7 +64,7 @@ namespace ADONETExample.Controllers
             arr[8] = 10;*/
             return View();
         }
-
+        
         public ActionResult SeacrhCustomer()
         {
             repo.SearchCustomer();

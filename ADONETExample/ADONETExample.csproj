@@ -179,12 +179,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Filters\Authentication.cs" />
-    <Compile Include="Filters\Authorization.cs" />
+    <Compile Include="Filters\ActionFilter.cs" />
+    <Compile Include="Filters\AuthenticationFilter.cs" />
+    <Compile Include="Filters\AuthorizationFilter.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
+    <Compile Include="Filters\ResultFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Models\ADONETSAMPLE.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
@@ -231,6 +235,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\3253529.jpeg" />
+    <Content Include="Content\img\unnamed.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
