@@ -158,6 +158,10 @@ namespace ADONETExample.Controllers
         {
             return "Время :" + DateTime.Now.ToString();
         }
-
+        public ActionResult ViewBootstrap()
+        {
+            return View();
+        }
+        
     }
 }

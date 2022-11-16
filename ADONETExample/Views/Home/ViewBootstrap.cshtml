@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "ViewBootstrap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Example using of Bootstrap</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4">
+        <h2>How to be a good programmer ?</h2>
+        <a>to know tap to link</a>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-md-push-3">
+        <h2>How are u bro?</h2>
+        <a>send me message</a>
+    </div>
+    @*<div class="col-md-4">
+            <h2>Whatsupp? </h2>
+            <a>send me message</a>
+        </div>*@
+</div>
+@{
+    string mdo = "Черная паста";
+    string fat = "Синяя паста";
+    string twitter = "Красная паста";
+
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr class="table-success">
+            <th scope="row">1</th>
+            <td class="table-primary">Mark</td>
+            <td>Otto</td>
+            <td>@@mdo</td>
+        </tr>
+        <tr class="table-danger">
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@@fat</td>
+        </tr>
+        <tr class="table-dark">
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@@twitter</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- On tables -->
+<table class="table-primary">...</table>
+<table class="table-secondary">...</table>
+<table class="table-success">...</table>
+<table class="table-danger">...</table>
+<table class="table-warning">...</table>
+<table class="table-info">...</table>
+<table class="table-light">...</table>
+<table class="table-dark">...</table>
+
+<!-- On rows -->
+<tr class="table-primary">...</tr>
+<tr class="table-secondary">...</tr>
+<tr class="table-success">...</tr>
+<tr class="table-danger">...</tr>
+<tr class="table-warning">...</tr>
+<tr class="table-info">...</tr>
+<tr class="table-light">...</tr>
+<tr class="table-dark">...</tr>
+
+<!-- On cells (`td` or `th`) -->
+<tr>
+    <td class="table-primary">...</td>
+    <td class="table-secondary">...</td>
+    <td class="table-success">...</td>
+    <td class="table-danger">...</td>
+    <td class="table-warning">...</td>
+    <td class="table-info">...</td>
+    <td class="table-light">...</td>
+    <td class="table-dark">...</td>
+
+</tr>
+
+<div class="alert alert-primary" role="alert">
+    A simple primary alert—check it out!
+</div>
+<div class="alert alert-secondary" role="alert">
+    A simple secondary alert—check it out!
+</div>
+<div class="alert alert-success" role="alert">
+    A simple success alert—check it out!
+</div>
+<div class="alert alert-danger" role="alert">
+    A simple danger alert—check it out!
+</div>
+<div class="alert alert-warning" role="alert">
+    A simple warning alert—check it out!
+</div>
+<div class="alert alert-info" role="alert">
+    A simple info alert—check it out!
+</div>
+<div class="alert alert-light" role="alert">
+    A simple light alert—check it out!
+</div>
+<div class="alert alert-dark" role="alert">
+    A simple dark alert—check it out!
+</div>
