@@ -16,6 +16,7 @@ namespace ADONETExample.Repository
         string LinkResults();
         IEnumerable<Customer> SendAsJson(string name);
         IEnumerable<Customer> GetTable();
+    /*    IEnumerable<Customer> Details(int id);*/
     }
 
     public class HomeRepository : IHomeRepository
@@ -62,5 +63,9 @@ namespace ADONETExample.Repository
            return db.Customers.ToList();
         }
 
+        /*public IEnumerable<Customer> Details(int id)
+        {
+           return db.Customers.FirstOrDefault(x => x.CustomerId == id);
+        }*/
     }
 }

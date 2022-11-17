@@ -24,9 +24,13 @@ namespace ADONETExample.Models
         }
         public class ChatUsers
         {
+            public string LoginPost;
+            public string Password;
+            public bool  Remember;
             public string Name;
             public DateTime Login;
             public DateTime LastVisit;
+
         }
 
         public class ChatMessage

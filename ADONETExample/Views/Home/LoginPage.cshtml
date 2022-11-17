@@ -1,0 +1,43 @@
+﻿@model  ADONETExample.Models.Chat.ChatUsers
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Login </h2>
+@using (Html.BeginForm("LoginPage", "Home", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+{
+    <br>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.LoginPost, new { @class = "form-control", @placeholder = "Логин" })
+            @Html.ValidationMessageFor(m => m.LoginPost)
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="col-md-10">
+            @*Здесь должен быть атрибут Password*@
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Пароль" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="checkbox">
+                @*@Html.CheckBoxFor(m => m.Remember)
+                    @Html.LabelFor(m => m.Remember)*@
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Вход" class="btn btn-success">
+        </div>
+    </div>
+
+    
+
+}

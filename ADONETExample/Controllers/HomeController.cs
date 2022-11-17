@@ -34,8 +34,9 @@ namespace ADONETExample.Controllers
          Soft coupling (Мягкая/слабая связь) к репозиторию
          */
 
-        private IHomeRepository repo;
 
+        private IHomeRepository repo;
+        MyMusicDBEntities db = new MyMusicDBEntities();
         public HomeController(IHomeRepository r) //
         {
             /*
@@ -111,8 +112,8 @@ namespace ADONETExample.Controllers
 
         [HttpGet]
         public ActionResult GetTable()
-        {
-            return View(repo.GetTable());
+        { 
+            return View(db.Customers.OrderBy(c=>c.CustomerId).ToList());
         }
 
         public ActionResult Sample()
@@ -162,6 +163,21 @@ namespace ADONETExample.Controllers
         {
             return View();
         }
+
+        public ActionResult LoginPage()
+        {
+            return View();
+        }
         
+        public ActionResult Details(int id)
+        {
+            Customer c = db.Customers.FirstOrDefault(x => x.CustomerId == id);
+            if(c != null)
+            {
+                return PartialView(c);
+            }
+            return HttpNotFound();
+        }
+
     }
 }
